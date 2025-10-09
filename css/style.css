@@ -1,0 +1,18 @@
+/* :root {
+    --primary-color: #3498db;
+    --secondary-color: #2ecc71;
+    --background-color: #f5f5f5;
+    --text-color: #333333;
+    --font-family: 'Helvetica Neue', Arial, sans-serif;
+    --border-radius: 4px;
+    --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    } */
+
+.header-container {
+    display: flex;
+    flex-direction: row;
+    background-color: #fbfbfb;
+    color: rgb(0, 0, 0);
+    padding: 10px 20px;
+    text-decoration: none;
+}
