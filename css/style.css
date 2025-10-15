@@ -7,9 +7,16 @@
     --border-radius: 4px;
     --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     } */
-body{
+*{
+  margin: 0;
+  padding: 0;
+}
+
+    body{
     background-color: black;
 }
+
+/* begin header */
 .header-container {
     width: 100%;
     height: 150px;
@@ -31,48 +38,54 @@ body{
     list-style: none;
     display: flex;
     gap: 25px;
-}
-
-.header-links :hover{
+  }
+  
+  .header-links :hover{
     font-weight: bold;
     color: rgb(71, 67, 67);
-}
-
-.header-links a{    
+  }
+  
+  .header-links a{    
     text-decoration: none;
     color: black;
-}
-a {
+  }
+  a {
     text-decoration: none;
-}
+  }
+  /* einde header */
+  
+  /* begin footer */
+  .footer{
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    height: 50px;}
+  /* einde footer */
 
-.mySlides-fade {
+  /* begin slideshow */
+  .mySlides-fade {
     display: none;
     width: 100%;
-    height: 400px;
+    height: 100%;
     object-fit: cover;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     animation: fadeIn 1s;
-    margin-bottom: 20px;
-    margin-top: 20px;
     background-color: #ddd;
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
     position: relative;
-    overflow: hidden;
     transition: opacity 1s ease-in-out;
     opacity: 0;
     animation: fadeIn 1s forwards;
-
-
 }
 
 .slideshow-container {
   position: relative;
   max-width: 100%;
   margin: auto;
-  overflow: hidden;
 }
 
 
@@ -82,8 +95,6 @@ a {
 
 .caption {
   color: #f2f2f2;
-  font-size: 18px;
-  padding: 8px 12px;
   position: absolute;
   bottom: 10px;
   width: 100%;
@@ -96,16 +107,11 @@ a {
   position: absolute;
   top: 50%;
   width: auto;
-  padding: 16px;
   color: white;
   font-weight: bold;
   font-size: 24px;
   transition: 0.3s;
   user-select: none;
-}
-
-.prev:hover, .next:hover {
-  background-color: rgba(0,0,0,0.5);
 }
 
 .prev {
@@ -115,25 +121,7 @@ a {
   right: 0;
 }
 
-/* Bolletjes */
-.dots {
-  text-align: center;
-  margin-top: 15px;
-}
 
-.dot {
-  cursor: pointer;
-  height: 15px;
-  width: 15px;
-  margin: 0 3px;
-  background-color: #bbb;
-  display: inline-block;
-  transition: background-color 0.3s;
-}
-
-.active, .dot:hover {
-  background-color: #717171;
-}
 
 /* Fade animatie */
 .fade {
@@ -145,3 +133,93 @@ a {
   from {opacity: 0.4} 
   to {opacity: 1}
 }
+
+.lijn{
+  height: 25px;
+  width: 100%;
+  background-color: green;
+}
+.container_homepage{
+  width: 100%;
+  height: 800px;
+  flex-direction: row;
+  display: flex;
+}
+
+.tekst_homepage{
+  background-color: white;
+  color: #ddd;
+  height: 100%;
+  width: 50%;
+}
+  
+.image_homepage{
+  background-color: orange;
+  color: #ddd;
+  height: 100%;
+  width: 50%;
+}
+
+.image_homepage img{
+  min-width: 100%;
+  min-height: 100%;
+  position: relative;
+}
+
+/* begin login systeem */
+  .login-container{
+    width: 500px;
+    height: 500px;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    color: black;
+  }
+
+  .login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .aanmelden_button{
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+   .aanmelden_button button{
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .gegevens{
+    margin-bottom: 15px;
+    width: 300px;
+    height: 30px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  .gegevens_invoer{
+    margin-bottom: 15px;
+    width: 300px;
+    height: 30px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+/* einde login systeem */

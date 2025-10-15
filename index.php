@@ -1,4 +1,7 @@
-<?php include 'includes/header.php';?>
+<?php 
+include 'includes/header.php';
+include 'includes/connect.php';
+?>
 
 <div class="slideshow-container">
 
@@ -29,6 +32,23 @@
   </div>
 
   <script src="script.js"></script>
+
+  <div class="lijn"></div>
+
+  <div class="container_homepage">
+
+    <div class="tekst_homepage">
+    dsofhsdophjsd
+    </div>
+
+    <div class="image_homepage">
+      <img src="https://picsum.photos/id/1016/800/400" alt="dit">
+hhjhhhhhj
+    </div>
+
+  </div>
+
+
 
 
 <?php include 'includes/footer.php';?>
