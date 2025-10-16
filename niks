@@ -1,14 +1,14 @@
-<!-- <?php
+<?php
 // register.php (voorbeeld)
 session_start();
 // CSRF-check etc. zou hier moeten
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = $_POST['email'] ?? '';
+    $password = $_POST['password'] ?? '';
     $password = $_POST['password'] ?? '';
 
     // Basisvalidatie
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL) || strlen($password) < 8) {
+    if (!filter_var($password, FILTER_VALIDATE_PASSWORD) || strlen($password) < 8) {
         die('Ongeldige input');
     }
 
@@ -16,17 +16,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $hash = password_hash($password, PASSWORD_DEFAULT); // veilig, gebruikt bcrypt/argon2 indien beschikbaar
 
     // Verbinding (PDO voorbeeld)
-    $pdo = new PDO('mysql:host=localhost;dbname=voorbeeld;charset=utf8mb4', 'dbuser', 'dbpass', [
+    $pdo = new PDO('mysql:host=localhost;dbname=5.2cms;charset=utf8mb4', 'dbuser', 'dbpass', [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
     ]);
 
     // Prepared statement om SQL-injectie te voorkomen
-    $stmt = $pdo->prepare("INSERT INTO users (email, password_hash) VALUES (:email, :hash)");
-    $stmt->execute([':email' => $email, ':hash' => $hash]);
+    $stmt = $pdo->prepare("INSERT INTO users (password, password_hash) VALUES (:password, :hash)");
+    $stmt->execute([':password' => $password, ':hash' => $hash]);
 
     echo "Gebruiker aangemaakt";
 }
-?> -->
+?>
 
 
 

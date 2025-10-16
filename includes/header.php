@@ -1,3 +1,8 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +16,7 @@
 <header>
     <div class="header-container">
 
-        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3MTc3Nzc3Nzc3Nzc3NzA0LS03Nzc3LTctNzc1KzU1NTc1NzUrLS04Ky03Nf/AABEIABwAHAMBEQACEQEDEQH/xAAaAAABBQEAAAAAAAAAAAAAAAAAAgMEBgcF/8QAKBAAAgICAQMDAwUAAAAAAAAAAQIDBAARBRIhMRNRYQZBkRQVIiNx/8QAGAEBAAMBAAAAAAAAAAAAAAAAAAECAwX/xAAiEQACAgEDBAMAAAAAAAAAAAAAAgERAxMhMQQSUWEiMkH/2gAMAwEAAhEDEQA/ANpoWluVxKo0QzIw9mUlSPyDmeN4dbBIzQBgBgFQ+oUlrVuKr8RLLF0tKyqrkFyiF9N77IO9/c5y+piVVFxEEH9xs3LnIXksTpXn42xJBH1kBQmlDAfY7BO8xnK7sz3tKzQGeVtWV/mHusE42uweK0yLE7bHWw33763kZ2a73+sfvHsDv1S/MRXa6wcvFAP0ydS+v0dTd9nXzluqnNDR2vW0Elrr+ncaSxCsbBJf6JSN99AMVPse4zqqsS0zMGcN3Raihx6qI1Fet0hPSIEYGoz5UfHxltPF4HzFGgvpuohrkugjbcY0UA7L/mTp4/BNPWwzNxEMzhpKlKTShQXhB0APHjxkaWGeVKyuS+TpqqooVFCqBoAeBljSq2gVgkMAMA//2Q==" alt="Site Logo" class="logo">
+        <img src="https://www.praktijk-mirre-terug-in-verbinding.nl/wp-content/uploads/2020/12/cropped-logo-mirre-1.png" alt="Site Logo" class="logo">
 
         <nav>
             <ul class="header-links">
@@ -21,7 +26,5 @@
                 <li><a href="login.php">Login</a></li>
             </ul>
         </nav>
-
     </div>
 </header>
-    
