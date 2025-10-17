@@ -15,8 +15,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         redirect_with_message('aanmelden.php', 'Vul alle velden in.');
     }
 
-    // Check if username already exists
-    $stmt = mysqli_prepare($conn, 'SELECT id FROM users WHERE username = ?');
+    // Check if username already exists (use `login` table)
+    $stmt = mysqli_prepare($conn, 'SELECT id FROM users WHERE username = ? LIMIT 1');
     mysqli_stmt_bind_param($stmt, 's', $username);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_store_result($stmt);
@@ -26,9 +26,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     mysqli_stmt_close($stmt);
 
-    // Hash password and insert
+    // Hash password and insert into `users` table
     $hash = password_hash($password, PASSWORD_DEFAULT);
-    $insert = mysqli_prepare($conn, 'INSERT INTO users (username, password_hash, created_at) VALUES (?, ?, NOW())');
+    $insert = mysqli_prepare($conn, 'INSERT INTO users (username, password) VALUES (?, ?)');
     mysqli_stmt_bind_param($insert, 'ss', $username, $hash);
     if (mysqli_stmt_execute($insert)) {
         mysqli_stmt_close($insert);

@@ -38,8 +38,22 @@ include 'includes/connect.php';
   <div class="container_homepage">
 
     <div class="tekst_homepage">
-    dsofhsdophjsd
-    </div>
+    <div class="tekst_homepage_span">
+  <h2>Home</h2><br>
+  <span>Van harte welkom op de website van praktijk MIRЯE!</span><br><br>
+
+  <span>Een plek waar het woord 'verbinding' de</span>
+    <span style="color: red;">rode</span> 
+    <span>draad is.</span><br><br>
+
+    <span>"Verbinding is de energie die bestaat tussen mensen wanneer zij zich gezien, 
+      gehoord en gewaardeerd voelen, kunnen geven en ontvangen zonder oordeel en steun en kracht ontlenen aan de relatie.” Brown, B. (2010).</span><br><br>
+    
+      <span>Een zin die vele waarden van praktijk MIRЯE verwoorden. De ander zien, horen, waarderen, 'zijn' zonder oordeel, ondersteuning bieden in een
+       periode waarin het minder goed gaat . De ander te helpen weer in zijn/haar kracht te komen.</span><br><br>
+
+  </div>
+  </div>
 
     <div class="image_homepage">
       <img src="https://picsum.photos/id/1016/800/400" alt="dit">

@@ -16,7 +16,7 @@ if (session_status() === PHP_SESSION_NONE) {
 <header>
     <div class="header-container">
 
-        <img src="https://www.praktijk-mirre-terug-in-verbinding.nl/wp-content/uploads/2020/12/cropped-logo-mirre-1.png" alt="Site Logo" class="logo">
+        <img src="img/mirre_logo.png" alt="Site Logo" class="logo">
 
         <nav>
             <ul class="header-links">
