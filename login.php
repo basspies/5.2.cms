@@ -1,60 +1,67 @@
 <?php
-include 'includes/header.php';
+session_start();
+
+// DB verbinding (zorg dat includes/connect.php géén HTML output geeft)
 include 'includes/connect.php';
 
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
+// Variabelen voor template
 $error = '';
+$old_username = '';
+
+// Verwerk login vóórdat er HTML verstuurd wordt
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = trim($_POST['username'] ?? '');
     $password = $_POST['password'] ?? '';
 
+    $old_username = $username;
+
     if ($username === '' || $password === '') {
-        $error = 'Vul alle velden in.';
+        $error = 'Vul gebruikersnaam en wachtwoord in.';
     } else {
-        $stmt = mysqli_prepare($conn, 'SELECT id, password FROM users WHERE username = ? LIMIT 1');
-        mysqli_stmt_bind_param($stmt, 's', $username);
-        mysqli_stmt_execute($stmt);
-        mysqli_stmt_bind_result($stmt, $user_id, $password_hash);
-        if (mysqli_stmt_fetch($stmt)) {
-            mysqli_stmt_close($stmt);
-            if (password_verify($password, $password_hash)) {
-                $_SESSION['user_id'] = $user_id;
-                $_SESSION['username'] = $username;
-                header('Location: index.php');
-                exit;
-            } else {
-                $error = 'Onjuiste gebruikersnaam of wachtwoord.';
-            }
+        // Haal gebruiker op uit database
+        $stmt = $conn->prepare('SELECT username, password FROM users WHERE username = :username LIMIT 1');
+        $stmt->execute([':username' => $username]);
+        $users = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // Vergelijk plaintext wachtwoord
+        if ($users && ($password === $users['password'])) {
+            // Login succesvol
+            $_SESSION['username'] = $users['username'];
+
+            // Redirect naar CMS-dashboard
+            header('Location: cms.php');
+            exit;
         } else {
-            mysqli_stmt_close($stmt);
-            $error = 'Onjuiste gebruikersnaam of wachtwoord.';
+            $error = 'Ongeldige gebruikersnaam of wachtwoord.';
         }
     }
 }
+
+// Header includen NA login-verwerking
+include 'includes/header.php';
 ?>
 
 <div class="login">
-<div class="login-container">
-    <h2>Login</h2>
-    <?php if ($error): ?>
-        <p class="error"><?php echo htmlspecialchars($error); ?></p>
-    <?php endif; ?>
-    <form action="login.php" method="post">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" placeholder="Enter your username" required><br>
-        
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" placeholder="Enter your password" required><br>
-        
-        <button type="submit">Login</button>
-    </form>
-    
-    <div class="aanmelden">
-        <p>heb je geen account? <a href="aanmelden.php">Registreer hier</a></p>
-        </div>
+  <div class="login-container">
+      <h2>Login</h2>
+
+      <?php if ($error): ?>
+        <p style="color:red;"><?php echo htmlspecialchars($error, ENT_QUOTES, 'UTF-8'); ?></p>
+      <?php endif; ?>
+
+      <form action="login.php" method="POST">
+          <label for="username" class="gegevens">Username:</label>
+          <input type="text" id="username" name="username" placeholder="Enter your username" required class="gegevens_invoer"
+                 value="<?php echo htmlspecialchars($old_username, ENT_QUOTES, 'UTF-8'); ?>"><br>
+
+          <label for="password" class="gegevens">Password:</label>
+          <input type="password" id="password" name="password" placeholder="Enter your password" required class="gegevens_invoer"><br>
+
+          <button type="submit" class="aanmelden_button">Login</button>
+
+          <p>Nog geen account? <a href="aanmelden.php" class="aanmelden_button">Registreer hier</a></p>
+      </form>
+  </div>
 </div>
-</div>
-<?php include 'includes/footer.php';?>
+
+<?php include 'includes/footer.php'; ?>
