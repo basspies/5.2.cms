@@ -56,8 +56,7 @@ include 'includes/connect.php';
   </div>
 
     <div class="image_homepage">
-      <img src="https://picsum.photos/id/1016/800/400" alt="dit">
-hhjhhhhhj
+      <img src="https://picsum.photos/id/1020/800/400" alt="foto_homepage">
     </div>
 
   </div>

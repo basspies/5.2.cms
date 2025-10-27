@@ -33,53 +33,53 @@
 }
 
 .header-links {
-    justify-content: space-around;
-    min-height: 500%;
-    list-style: none;
-    display: flex;
-    gap: 25px;
-  }
+  justify-content: space-around;
+  min-height: 500%;
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
   
-  .header-links :hover{
-    font-weight: bold;
-    color: rgb(71, 67, 67);
-  }
+.header-links :hover{
+  color: black;
+}
   
-  .header-links a{    
-    text-decoration: none;
-    color: black;
-  }
-  a {
-    text-decoration: none;
-  }
-  /* einde header */
+.header-links a{    
+  text-decoration: none;
+  color: rgb(71, 67, 67);
+}
+a {
+  text-decoration: none;
+}
+/* einde header */
   
-  /* begin footer */
-  .footer{
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 10px 0;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-    height: 50px;}
-  /* einde footer */
+/* begin footer */
+.footer{
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+}
+/* einde footer */
 
-  /* begin slideshow */
-  .mySlides-fade {
-    display: none;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    animation: fadeIn 1s;
-    background-color: #ddd;
-    background-size: cover;
-    background-position: center;
-    position: relative;
-    transition: opacity 1s ease-in-out;
-    opacity: 0;
-    animation: fadeIn 1s forwards;
+/* begin slideshow */
+.mySlides-fade {
+  display: none;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: fadeIn 1s;
+  background-color: #ddd;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  transition: opacity 1s ease-in-out;
+  opacity: 0;
+  animation: fadeIn 1s forwards;
 }
 
 .slideshow-container {
@@ -170,8 +170,8 @@
 }
 
 .image_homepage img{
-  min-width: 100%;
-  min-height: 100%;
+  max-width: 100%;
+  height: 100%;
   position: relative;
 }
 
@@ -251,30 +251,60 @@
 }
 /* einde login systeem */
 
+/* begin cms */
 .cms-container{
-  background-color: #ddd;
-  height: 1000px;
+  background-color: #f1f1f1;
+  height: 700px;
   width: 100%;
-  height: 100vh;
   display: flex;
   flex-direction: row;
 }
 
-.cms_links{
-  background-color: #f8f8f8;
+.cms-intro{
+  background-color: #4CAF50;
+  height: 140px;
+  width: 100%;
+  color: white;
+  text-align: center;
+}
+
+.cms-links{
+  background-color: #ffffff;
   color: white;
   width: 30%;
-  height: 100%;
+  height: 80%;
+  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 20px;
 }
 
-.cms_inhoud{
-  background-color: #ecf0f1;
-  color: rgb(255, 255, 255);
-  height: 100%;
-  width: 70%;
-  padding: 20px;
+.cms-links li{
+  background-color: #3e3e3e;
+  width: 75%;
+  height: 40px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  align-content: center;
 }
+.cms-links li:hover{
+  background-color: #000000;
+  padding: 1px;
+  transition: 0.5s;
+}
+
+.cms-links a{
+  color: #ffffff;
+}
+
+.cms-inhoud{
+  background-color: #dfd000;
+  color: rgb(0, 0, 0);
+  height: 80%;
+  width: 70%;
+  text-align: center;
+}
+
+/* einde cms */
