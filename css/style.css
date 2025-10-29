@@ -257,7 +257,6 @@ a {
   height: 700px;
   width: 100%;
   display: flex;
-  flex-direction: row;
 }
 
 .cms-intro{
@@ -279,7 +278,8 @@ a {
   align-items: center;
 }
 
-.cms-links li{
+.cms-links a{
+  color: white;
   background-color: #3e3e3e;
   width: 75%;
   height: 40px;
@@ -289,15 +289,13 @@ a {
   cursor: pointer;
   align-content: center;
 }
-.cms-links li:hover{
+.cms-links a:hover{
   background-color: #000000;
   padding: 1px;
   transition: 0.5s;
 }
 
-.cms-links a{
-  color: #ffffff;
-}
+
 
 .cms-inhoud{
   background-color: #dfd000;
@@ -305,6 +303,42 @@ a {
   height: 80%;
   width: 70%;
   text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 /* einde cms */
+
+.contactpagina_container{
+  width: 100%;
+  height: 800px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  background-color: #f9f9f9;
+  color: black;
+}
+
+.contact_gegevens{
+  width: 50%;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.contact_gegevens p{
+  margin-bottom: 15px;
+}
+
+.contact_formulier{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact_formulier_lijn{
+  height: 100%;
+  width: 2px;
+  background-color: black;
+}

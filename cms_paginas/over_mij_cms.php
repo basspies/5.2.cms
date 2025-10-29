@@ -1,6 +1,19 @@
 <?php 
 include 'header_cms.php';
 include '../includes/connect.php';
+
+if (isset($_GET['image_url']) && isset($_GET['title']) && !empty($_GET['image_url']) && !empty($_GET['title'])) {
+    $image_url = htmlspecialchars($_GET['image_url']);
+    $title = htmlspecialchars($_GET['title']);
+    
+    $stmt = $conn->prepare("INSERT INTO slideshow (image_url, title)
+  VALUES (:image_url, :title)");
+  $stmt->bindParam(':image_url', $image_url);
+  $stmt->bindParam(':title', $title);
+
+  // insert a row
+  $stmt->execute();
+}
 ?>
 
 <div class="cms-intro">
@@ -9,19 +22,18 @@ include '../includes/connect.php';
 </div>
 <div class="cms-container">
 
-    <ul class="cms-links">
-        <li><a href="homepagina_cms.php">homepage</a></li>
-        <li><a href="over_mij_cms.php">over mij</a></li>
-        <li><a href="contact_gegevens_cms.php">contact_gegevens</a></li>
-        <li><a href="../index.php">Uitloggen</a></li>
-    </ul>
+    <?php include '../includes/cms_links_paginas.php'; ?>
 
     <div class="cms-inhoud">
-        <h3>Inhoud bewerken</h3>
-        <p>Kies een sectie om te bewerken vanuit het menu hierboven.</p>
-        <div class="slideshow_cms">
-            
-        </div>
+    <form action="homepagina_cms.php" method="GET">
+        <label for="image_url" class="gegevens">image_url:</label>
+        <input type="url" id="image_url" name="image_url" placeholder="Enter your image_url" required class="gegevens_invoer"><br>
+        
+        <label for="title" class="gegevens">title:</label>
+        <input type="text" id="title" name="title" placeholder="Enter your title" required class="gegevens_invoer"><br>
+
+        <button type="submit" class="aanmelden_button">toevoegen</button>
+    </form>
     </div>
 </div>
 

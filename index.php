@@ -1,6 +1,6 @@
-<?php 
-include 'includes/header.php';
+<?php
 include 'includes/connect.php';
+include 'includes/header.php';
 ?>
 
 <div class="slideshow-container">
@@ -11,8 +11,16 @@ include 'includes/connect.php';
     </div>
 
     <div class="slide fade">
-      <img src="https://picsum.photos/id/1016/800/400" alt="Afbeelding 2">
-      <div class="caption">Zonsondergang</div>
+
+  <?php 
+$stmt = $conn->prepare( "SELECT image_url FROM slideshow");
+ $stmt->execute();
+        $image_url = $stmt->fetch(PDO::FETCH_ASSOC)['image_url'];
+
+?>
+
+      <img src="<?php echo htmlspecialchars($image_url); ?>" alt="Afbeelding 2">
+      <div class="caption">tunings</div>
     </div>
 
     <div class="slide fade">
@@ -60,6 +68,7 @@ include 'includes/connect.php';
     </div>
 
   </div>
+
 
 
 
