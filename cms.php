@@ -10,10 +10,10 @@ include 'includes/connect.php';
 <div class="cms-container">
 
     <ul class="cms-links">
-        <li><a href="cms_paginas/homepagina_cms.php">homepage</a></li>
-        <li><a href="cms_paginas/over_mij_cms.php">over mij</a></li>
-        <li><a href="cms_paginas/contact_gegevens_cms.php">contact_gegevens</a></li>
-        <li><a href="index.php">Uitloggen</a></li>
+        <a href="cms_paginas/homepagina_cms.php">homepage</a>
+        <a href="cms_paginas/over_mij_cms.php">over mij</a>
+        <a href="cms_paginas/contact_gegevens_cms.php">contact_gegevens</a>
+        <a href="index.php">Uitloggen</a>
     </ul>
 
     <div class="cms-inhoud">
