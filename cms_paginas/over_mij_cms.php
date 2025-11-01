@@ -2,14 +2,16 @@
 include 'header_cms.php';
 include '../includes/connect.php';
 
-if (isset($_GET['image_url']) && isset($_GET['title']) && !empty($_GET['image_url']) && !empty($_GET['title'])) {
-    $image_url = htmlspecialchars($_GET['image_url']);
-    $title = htmlspecialchars($_GET['title']);
-    
-    $stmt = $conn->prepare("INSERT INTO slideshow (image_url, title)
-  VALUES (:image_url, :title)");
-  $stmt->bindParam(':image_url', $image_url);
-  $stmt->bindParam(':title', $title);
+if (isset($_GET['prijs']) && isset($_GET['informatie']) && isset($_GET['meer_info']) && !empty($_GET['prijs']) && !empty($_GET['informatie']) && !empty($_GET['meer_info'])) {
+    $prijs = htmlspecialchars($_GET['prijs']);
+    $informatie = htmlspecialchars($_GET['informatie']);
+    $meer_info = htmlspecialchars($_GET['meer_info']);
+
+    $stmt = $conn->prepare("INSERT INTO producten (prijs, informatie, meer_info)
+  VALUES (:prijs, :informatie, :meer_info)");
+  $stmt->bindParam(':prijs', $prijs);
+  $stmt->bindParam(':informatie', $informatie);
+  $stmt->bindParam(':meer_info', $meer_info);
 
   // insert a row
   $stmt->execute();
@@ -25,12 +27,15 @@ if (isset($_GET['image_url']) && isset($_GET['title']) && !empty($_GET['image_ur
     <?php include '../includes/cms_links_paginas.php'; ?>
 
     <div class="cms-inhoud">
-    <form action="homepagina_cms.php" method="GET">
-        <label for="image_url" class="gegevens">image_url:</label>
-        <input type="url" id="image_url" name="image_url" placeholder="Enter your image_url" required class="gegevens_invoer"><br>
+    <form action="over_mij_cms.php" method="GET">
+        <label for="prijs" class="gegevens">prijs:</label>
+        <input type="text" id="prijs" name="prijs" placeholder="Enter your prijs" required class="gegevens_invoer"><br>
         
-        <label for="title" class="gegevens">title:</label>
-        <input type="text" id="title" name="title" placeholder="Enter your title" required class="gegevens_invoer"><br>
+        <label for="informatie" class="gegevens">informatie:</label>
+        <input type="text" id="informatie" name="informatie" placeholder="Enter your informatie" required class="gegevens_invoer"><br>
+
+        <label for="meer_info" class="gegevens">meer_info:</label>
+        <input type="text" id="meer_info" name="meer_info" placeholder="Enter your meer_info" required class="gegevens_invoer"><br>
 
         <button type="submit" class="aanmelden_button">toevoegen</button>
     </form>
