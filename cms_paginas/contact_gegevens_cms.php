@@ -2,14 +2,20 @@
 include 'header_cms.php';
 include '../includes/connect.php';
 
-if (isset($_GET['image_url']) && isset($_GET['title']) && !empty($_GET['image_url']) && !empty($_GET['title'])) {
-    $image_url = htmlspecialchars($_GET['image_url']);
-    $title = htmlspecialchars($_GET['title']);
-    
-    $stmt = $conn->prepare("INSERT INTO slideshow (image_url, title)
-  VALUES (:image_url, :title)");
-  $stmt->bindParam(':image_url', $image_url);
-  $stmt->bindParam(':title', $title);
+if (isset($_GET['praktijknaam']) && isset($_GET['adres']) && isset($_GET['postcode']) && isset($_GET['telefoonnummer']) && isset($_GET['emailadres']) && !empty($_GET['praktijknaam']) && !empty($_GET['adres']) && !empty($_GET['postcode']) && !empty($_GET['telefoonnummer']) && !empty($_GET['emailadres']) ) {
+    $title = htmlspecialchars($_GET['postcode']);
+    $praktijknaam = htmlspecialchars($_GET['praktijknaam']);
+    $adres = htmlspecialchars($_GET['adres']);
+    $telefoonnummer = htmlspecialchars($_GET['telefoonnummer']);
+    $emailadres = htmlspecialchars($_GET['emailadres']);
+
+    $stmt = $conn->prepare("INSERT INTO contact (praktijknaam, adres, postcode, telefoonnummer, emailadres)
+  VALUES (:praktijknaam, :adres, :postcode, :telefoonnummer, :emailadres)");
+  $stmt->bindParam(':praktijknaam', $praktijknaam);
+  $stmt->bindParam(':adres', $adres);
+  $stmt->bindParam(':postcode', $postcode);
+  $stmt->bindParam(':telefoonnummer', $telefoonnummer);
+  $stmt->bindParam(':emailadres', $emailadres);
 
   // insert a row
   $stmt->execute();
@@ -26,16 +32,33 @@ if (isset($_GET['image_url']) && isset($_GET['title']) && !empty($_GET['image_ur
 
 
     <div class="cms-inhoud">
-    <form action="homepagina_cms.php" method="GET">
-        <label for="image_url" class="gegevens">image_url:</label>
-        <input type="url" id="image_url" name="image_url" placeholder="Enter your image_url" required class="gegevens_invoer"><br>
-        
-        <label for="title" class="gegevens">title:</label>
-        <input type="text" id="title" name="title" placeholder="Enter your title" required class="gegevens_invoer"><br>
+    <form action="contact_gegevens_cms.php" method="GET">
+
+        <label for="praktijknaam" class="gegevens">praktijknaam:</label>
+        <input type="text" id="praktijknaam" name="praktijknaam" placeholder="Enter your praktijknaam" required class="gegevens_invoer"><br>
+
+        <label for="adres" class="gegevens">adres:</label>
+        <input type="text" id="adres" name="adres" placeholder="Enter your adres" required class="gegevens_invoer"><br>
+
+        <label for="postcode" class="gegevens">postcode:</label>
+        <input type="text" id="postcode" name="postcode" placeholder="Enter your postcode" required class="gegevens_invoer"><br>
+
+        <label for="telefoonnummer" class="gegevens">telefoonnummer:</label>
+        <input type="text" id="telefoonnummer" name="telefoonnummer" placeholder="Enter your telefoonnummer" required class="gegevens_invoer"><br>
+
+        <label for="emailadres" class="gegevens">emailadres:</label>
+        <input type="email" id="emailadres" name="emailadres" placeholder="Enter your emailadres" required class="gegevens_invoer"><br>
 
         <button type="submit" class="aanmelden_button">toevoegen</button>
     </form>
     </div>
-</div>
+    
 
-<?php include 'includes/footer.php'; ?>
+</div>
+            <a href="../delete.php?id=<?= $contact['id'] ?>" 
+            onclick="return confirm('Weet je zeker dat je dit wilt verwijderen?');">
+            Verwijderen
+
+
+
+<?php include '../includes/footer.php'; ?>

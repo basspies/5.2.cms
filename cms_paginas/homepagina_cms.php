@@ -35,6 +35,9 @@ if (isset($_GET['image_url']) && isset($_GET['title']) && !empty($_GET['image_ur
         <button type="submit" class="aanmelden_button">toevoegen</button>
     </form>
     </div>
+                <a href="../delete.php?id=<?= $slideshow['id'] ?>" 
+            onclick="return confirm('Weet je zeker dat je dit wilt verwijderen?');">
+            Verwijderen
 </div>
 
-<?php include 'includes/footer.php'; ?>
+<?php include '../includes/footer.php'; ?>
