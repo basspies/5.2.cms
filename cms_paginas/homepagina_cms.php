@@ -34,10 +34,31 @@ if (isset($_GET['image_url']) && isset($_GET['title']) && !empty($_GET['image_ur
 
         <button type="submit" class="aanmelden_button">toevoegen</button>
     </form>
+
+
+    <?php
+$pdo = new PDO("mysql:host=localhost;dbname=5.2cms", "root", "");
+
+$id = 6; // voorbeeld-id
+$stmt = $pdo->prepare("SELECT * FROM slideshow WHERE id = :id");
+$stmt->execute(['id' => $id]);
+$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+foreach ($result as $row) {
+
+    $stmt = $conn->prepare("SELECT * FROM jouw_tabel ORDER BY id ASC");
+    $stmt->bindParam(':image_url', $row['image_url']);
+    $stmt->bindParam(':title', $row['title']);
+    $stmt->execute();
+}
+?>
+
     </div>
                 <a href="../delete.php?id=<?= $slideshow['id'] ?>" 
             onclick="return confirm('Weet je zeker dat je dit wilt verwijderen?');">
             Verwijderen
 </div>
+
+
 
 <?php include '../includes/footer.php'; ?>
