@@ -10,6 +10,34 @@
     <p>123@voorbeeld.com</p>
     </div>
 
+
+
+    <?php
+    $stmt = $conn->prepare("SELECT * FROM contact lIMIT 1");
+    $stmt->execute();
+
+    $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+
+    while ($row = $stmt->fetch()) {
+    ?>
+
+    
+        <?php
+            // echo $row['id'];
+            echo "record found: " . $row['praktijknaam']  . "<br>";
+            echo "record found: " . $row['adres']  . "<br>";
+            echo "record found: " . $row['postcode']  . "<br>";
+            echo "record found: " . $row['telefoonnummer']  . "<br>";
+            echo "record found: " . $row['emailadres']  . "<br>";
+
+            ?>
+            <a href='details.php?id=<?php echo $row['id'] ?>'><button>meer informatie</button>
+        <?php
+        }
+        ?>
+
+
+
     <div class="contact_formulier_lijn"></div>
     <div class="contact_formulier">
         <form action="verwerk_contact.php" method="post">
