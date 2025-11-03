@@ -39,7 +39,40 @@ if (isset($_GET['prijs']) && isset($_GET['informatie']) && isset($_GET['meer_inf
 
         <button type="submit" class="aanmelden_button">toevoegen</button>
     </form>
+<?php
+    $pdo = new PDO("mysql:host=localhost;dbname=5.2cms", "root", "");
+
+// $id = 6; // voorbeeld-id
+$stmt = $pdo->prepare("SELECT * FROM producten");
+$stmt->execute();
+$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$stmt->execute();
+foreach ($result as $producten) {
+    echo "<div>";
+    echo "<h3>" . htmlspecialchars($producten['prijs']) . "</h3>";
+    echo "<h3>" . htmlspecialchars($producten['informatie']) . "</h3>";
+    echo "<h3>" . htmlspecialchars($producten['meer_info']) . "</h3>";
+
+    echo "<form method='post' action='over_mij_cms.php' onsubmit='return confirm(\"Weet je zeker dat je dit wilt verwijderen?\");'>";
+    echo "<input type='hidden' name='id' value='" . htmlspecialchars($producten['id']) . "'>";
+    echo "<button type='submit'>Verwijderen</button>";
+    echo "</form>";
+
+    echo "</div>";
+}
+
+if (isset($_POST['id'])) {
+    $id = (int)$_POST['id']; // zorg dat het een integer is
+    $stmt = $conn->prepare("DELETE FROM producten WHERE id = :id");
+    $stmt->bindParam(':id', $id);
+    $stmt->execute();
+
+    echo "Record verwijderd!";
+} else {
+    echo "Geen ID ontvangen om te verwijderen.";
+}
+?>
     </div>
 </div>
 
-<?php include 'includes/footer.php'; ?>
+<?php include '../includes/footer.php'; ?>

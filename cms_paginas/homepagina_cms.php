@@ -39,24 +39,40 @@ if (isset($_GET['image_url']) && isset($_GET['title']) && !empty($_GET['image_ur
     <?php
 $pdo = new PDO("mysql:host=localhost;dbname=5.2cms", "root", "");
 
-$id = 6; // voorbeeld-id
-$stmt = $pdo->prepare("SELECT * FROM slideshow WHERE id = :id");
-$stmt->execute(['id' => $id]);
+// $id = 6; // voorbeeld-id
+$stmt = $pdo->prepare("SELECT * FROM slideshow");
+$stmt->execute();
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$stmt->execute();
+foreach ($result as $slideshow) {
+    echo "<div>";
+    echo "<h3>" . htmlspecialchars($slideshow['title']) . "</h3>";
+    echo "<img src='" . htmlspecialchars($slideshow['image_url']) . "' alt='" . htmlspecialchars($slideshow['title']) . "' style='max-width:200px;'><br>";
 
-foreach ($result as $row) {
+    echo "<form method='post' action='homepagina_cms.php' onsubmit='return confirm(\"Weet je zeker dat je dit wilt verwijderen?\");'>";
+    echo "<input type='hidden' name='id' value='" . htmlspecialchars($slideshow['id']) . "'>";
+    echo "<button type='submit'>Verwijderen</button>";
+    echo "</form>";
 
-    $stmt = $conn->prepare("SELECT * FROM jouw_tabel ORDER BY id ASC");
-    $stmt->bindParam(':image_url', $row['image_url']);
-    $stmt->bindParam(':title', $row['title']);
-    $stmt->execute();
+    echo "</div>";
 }
+
+if (isset($_POST['id'])) {
+    $id = (int)$_POST['id']; // zorg dat het een integer is
+    $stmt = $conn->prepare("DELETE FROM slideshow WHERE id = :id");
+    $stmt->bindParam(':id', $id);
+    $stmt->execute();
+
+    echo "Record verwijderd!";
+} else {
+    echo "Geen ID ontvangen om te verwijderen.";
+}
+
+
 ?>
 
     </div>
-                <a href="../delete.php?id=<?= $slideshow['id'] ?>" 
-            onclick="return confirm('Weet je zeker dat je dit wilt verwijderen?');">
-            Verwijderen
+
 </div>
 
 

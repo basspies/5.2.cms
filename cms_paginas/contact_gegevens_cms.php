@@ -2,7 +2,7 @@
 include 'header_cms.php';
 include '../includes/connect.php';
 
-if (isset($_GET['praktijknaam']) && isset($_GET['adres']) && isset($_GET['postcode']) && isset($_GET['telefoonnummer']) && isset($_GET['emailadres']) && !empty($_GET['praktijknaam']) && !empty($_GET['adres']) && !empty($_GET['postcode']) && !empty($_GET['telefoonnummer']) && !empty($_GET['emailadres']) ) {
+if (isset($_GET['praktijknaam']) && isset($_GET['adres']) && isset($_GET['postcode']) && isset($_GET['telefoonnummer']) && isset($_GET['emailadres']) ) {
     $title = htmlspecialchars($_GET['postcode']);
     $praktijknaam = htmlspecialchars($_GET['praktijknaam']);
     $adres = htmlspecialchars($_GET['adres']);
@@ -47,17 +47,52 @@ if (isset($_GET['praktijknaam']) && isset($_GET['adres']) && isset($_GET['postco
         <input type="text" id="telefoonnummer" name="telefoonnummer" placeholder="Enter your telefoonnummer" required class="gegevens_invoer"><br>
 
         <label for="emailadres" class="gegevens">emailadres:</label>
-        <input type="email" id="emailadres" name="emailadres" placeholder="Enter your emailadres" required class="gegevens_invoer"><br>
+        <input type="text" id="emailadres" name="emailadres" placeholder="Enter your emailadres" required class="gegevens_invoer"><br>
 
         <button type="submit" class="aanmelden_button">toevoegen</button>
     </form>
+
+
+    <?php
+    $pdo = new PDO("mysql:host=localhost;dbname=5.2cms", "root", "");
+
+// $id = 6; // voorbeeld-id
+$stmt = $pdo->prepare("SELECT * FROM contact");
+$stmt->execute();
+$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$stmt->execute();
+foreach ($result as $contact) {
+    echo "<div>";
+    echo "<h3>" . htmlspecialchars($contact['praktijknaam']) . "</h3>";
+    echo "<h3>" . htmlspecialchars($contact['adres']) . "</h3>";
+    echo "<h3>" . htmlspecialchars($contact['postcode']) . "</h3>";
+    echo "<h3>" . htmlspecialchars($contact['telefoonnummer']) . "</h3>";
+    echo "<h3>" . htmlspecialchars($contact['emailadres']) . "</h3>";
+
+    echo "<form method='post' action='contact_gegevens_cms.php' onsubmit='return confirm(\"Weet je zeker dat je dit wilt verwijderen?\");'>";
+    echo "<input type='hidden' name='id' value='" . htmlspecialchars($contact['id']) . "'>";
+    echo "<button type='submit'>Verwijderen</button>";
+    echo "</form>";
+
+    echo "</div>";
+}
+
+if (isset($_POST['id'])) {
+    $id = (int)$_POST['id']; // zorg dat het een integer is
+    $stmt = $conn->prepare("DELETE FROM contact WHERE id = :id");
+    $stmt->bindParam(':id', $id);
+    $stmt->execute();
+
+    echo "Record verwijderd!";
+} else {
+    echo "Geen ID ontvangen om te verwijderen.";
+}
+?>
     </div>
     
 
 </div>
-            <a href="../delete.php?id=<?= $contact['id'] ?>" 
-            onclick="return confirm('Weet je zeker dat je dit wilt verwijderen?');">
-            Verwijderen
+
 
 
 
