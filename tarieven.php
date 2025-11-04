@@ -21,8 +21,8 @@ include 'includes/connect.php';
     <div class="tarieven_soorten">
         <?php
             // echo $row['id'];
-            echo "record found: " . $row['informatie']  . "<br>";
-            echo "record found: " . $row['prijs']  . "<br>";
+            echo $row['informatie']  . "<br>";
+            echo "€" . $row['prijs']  . "<br>";
 
             ?>
             <a href='details.php?id=<?php echo $row['id'] ?>'><button>meer informatie</button>

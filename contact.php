@@ -1,4 +1,7 @@
-<?php include 'includes/header.php'; ?>
+<?php 
+include 'includes/header.php'; 
+include 'includes/connect.php';
+?>
 
 <div class="contactpagina_container">
     <div class="contact_gegevens">
@@ -13,7 +16,7 @@
 
 
     <?php
-    $stmt = $conn->prepare("SELECT * FROM contact lIMIT 1");
+    $stmt = $conn->prepare("SELECT * FROM contact LIMIT 1");
     $stmt->execute();
 
     $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
