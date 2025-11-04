@@ -3,11 +3,10 @@ include 'includes/header.php';
 include 'includes/connect.php';
 ?>
 
-<div class="container">
+<div class="container"></div>
+    
+    <div class="tarieven_container">
     <h1>tarieven</h1>
-</div>
-
-<div class="tarieven_container">
     <!-- SELECT * FROM `producten` -->
     <?php
     $stmt = $conn->prepare("SELECT * FROM producten");

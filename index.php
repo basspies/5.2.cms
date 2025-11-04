@@ -13,14 +13,14 @@ include 'includes/header.php';
     <div class="slide fade">
 
   <?php 
-$stmt = $conn->prepare( "SELECT image_url FROM slideshow");
+$stmt = $conn->prepare( "SELECT image_url FROM slideshow" );
  $stmt->execute();
         $image_url = $stmt->fetch(PDO::FETCH_ASSOC)['image_url'];
 
 ?>
 
-      <img src="<?php echo htmlspecialchars($image_url); ?>" alt="Afbeelding 2">
-      <div class="caption">tunings</div>
+      <img src="<?php echo ($image_url); ?>" alt="Afbeelding 2">
+      <div class="caption">title</div>
     </div>
 
     <div class="slide fade">
