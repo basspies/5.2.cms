@@ -6,7 +6,7 @@ include 'includes/header.php';
 <div class="slideshow-container">
 
     <div class="slide fade">
-      <img src="https://picsum.photos/id/1015/800/400" alt="Afbeelding 1">
+      <img src="https://picsum.photos/id/1015/800/400" alt="Afbeelding 1" style="width:100% height: 400px;">
       <div class="caption">Berglandschap</div>
     </div>
 
@@ -19,12 +19,12 @@ $stmt = $conn->prepare( "SELECT image_url FROM slideshow" );
 
 ?>
 
-      <img src="<?php echo ($image_url); ?>" alt="Afbeelding 2">
+      <img src="<?php echo ($image_url); ?>" alt="Afbeelding 2" style="width:100% height: 400px;">
       <div class="caption">title</div>
     </div>
 
     <div class="slide fade">
-      <img src="https://picsum.photos/id/1020/800/400" alt="Afbeelding 3">
+      <img src="https://picsum.photos/id/1020/800/400" alt="Afbeelding 3" style="width:100% height: 400px;">
       <div class="caption">Meer met bergen</div>
     </div>
 
